@@ -52,6 +52,12 @@ function artistButton(artistImg, artistBG, albumCover) {
             }
 
             //draw the button boundary:
+            if (this.isSelected) {
+                stroke("Red");
+            }
+        else {
+            noStroke();
+        }
             rect(this.positionX, this.positionY, this.Width, this.Height);
 
             //This section fills the button with the loaded image
@@ -60,7 +66,7 @@ function artistButton(artistImg, artistBG, albumCover) {
 
             //if the button is currently selected add a blue tint to the image before drawing it
             if (this.isSelected) {
-                tint(0, 153, 204);
+                tint("RED");
             } else {
                 noTint();
             }
@@ -122,7 +128,7 @@ function standardButton(img, ButtonFunction) {
 
             //if the button is currently selected add a blue tint to the image before drawing it
             if (this.isSelected) {
-                tint(0, 153, 204);
+                tint("0, 153, 204");
             } else {
                 noTint();
             }

@@ -6,7 +6,7 @@ function draw(){
     frameRate(25);
     
     rect((width/4),(height/4),(width/4),(height/4));
-    text("INDEXPAGE", 100,100)
+    text("AMBIENT RECORDS", 100,100)
     
 
 }
