@@ -7,11 +7,12 @@ var playArtist;
 var playArtistImg;
 var artistBlurb;
 
+
 function preload() {
 
-    //load the array of artist images and backgrounds
+    //create an array for each artist that contains their respective artist artwork
     for (i = 0; i < numberOfArtists; i++) {
-        //load each file, they must be named and in the correct numbered location as below:
+        //load each image file, they must be named and in the correct numbered location as below:
         artArray1[i] = loadImage("artists/artist" + i + "/artistbutton.jpg");
         artArray2[i] = loadImage("artists/artist" + i + "/artistbackground.jpg");
         artArray3[i] = loadImage("artists/artist" + i + "/albumcover.jpg");
@@ -24,17 +25,17 @@ function preload() {
 function setup() {
     createCanvas(windowWidth, windowHeight);
 
-    //create the array of artistButtons
+    //create an array of artistButtons objects and load in the album artwork
     for (i = 0; i < numberOfArtists; i++) {
         artistButtons[i] = new artistButton(artArray1[i], artArray2[i], artArray3[i]);
     }
 
-    //by default set the first artist button as being selected
+    //by default set the first artist button as being the currently selected one
     artistButtons[0].isSelected = true;
 
-    //create the "Play Album Button"
+    //create the "Play Album" Button
     playArtist = new standardButton(playArtistImg, goToPlaybackPage);
-    
+
     dynamicPositioning();
 
 
@@ -43,28 +44,33 @@ function setup() {
 function draw() {
 
     background(200);
-    
-    
+
+
     //draw the currently selected artists background and album cover    
     for (i = 0; i < artistButtons.length; i++) {
         //if current artist is selected
         if (artistButtons[i].isSelected) {
             //draw the background
-            imageMode(CORNERS);
+            imageMode(CORNER);
             image(artistButtons[i].artistBG, 0, 0, width, height);
+
+            //draw a border for the album cover
+            stroke("white");
+            strokeWeight(4);
+            rect((width / 2) + 10, (height / 8), (width / 2.5), (width / 2.5));
             //draw the album cover
-            image(artistButtons[i].albumCover, (width/2) + 10, (height/8), ((width/2) + 10 + width/3), (height/8) + (width/3));
+            image(artistButtons[i].albumCover, (width / 2) + 10, (height / 8), (width / 2.5), (width / 2.5));
         }
     }
-    
 
-    
-    //draw the array of artistButtons:
+
+
+    //loop through the array of artistButtons and call their draw function:
     for (i = 0; i < artistButtons.length; i++) {
         artistButtons[i].drawButton();
     }
-    
-    //draw the play link button
+
+    //call the standardbutton objects draw function to draw the play link button
     playArtist.drawButton();
 
 }
@@ -72,19 +78,19 @@ function draw() {
 
 
 function windowResized() {
-
+    //this function will call dynamic positioning whenever the window is resized in order to correct the element positions
     dynamicPositioning()
 }
 
 function mouseClicked() {
-    //check if any of the artist buttons were pressed
+    //loop through the artistButton object array and call their functions to check if they have been pressed
     for (i = 0; i < artistButtons.length; i++) {
-        //if the artist button is clicked set the isSelected flag to true
+        //if the artist button is clicked set the isSelected flag to true to select it
         if (artistButtons[i].clicked()) {
             artistButtons[i].isSelected = true;
         }
 
-        //if it has not been clicked do not deselect the button unless one of the other artist buttons was clicked
+        //if that button has not been clicked on do not deselect it unless one of the other artist buttons was clicked on
         else {
             for (j = 0; j < artistButtons.length; j++) {
                 if (artistButtons[j].clicked()) {
@@ -95,7 +101,7 @@ function mouseClicked() {
 
     }
 
-    //check if play album button was clicked
+    //check if play album button was clicked by calling its function
     playArtist.clicked();
 
     // prevent default
@@ -103,11 +109,11 @@ function mouseClicked() {
 }
 
 function goToPlaybackPage() {
-    //check which artist is selected
+    //check which artistButton object in the array is currently selected
     for (i = 0; i < artistButtons.length; i++) {
         if (artistButtons[i].isSelected) {
 
-            //load the playbackpage with the selected artist number included in the URL
+            //load the albumpage.html and pass it the selected artist number at the end of the URL
             window.location.href = 'albumpage.html' + '#' + i;
         }
     }

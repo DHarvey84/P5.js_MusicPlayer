@@ -1,17 +1,30 @@
-function setup(){
-createCanvas(windowWidth, windowHeight);
+var introimage;
+
+function preload() {
+    introimg = loadImage("images/introimage.jpg");
 }
 
-function draw(){
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+}
+
+function draw() {
     frameRate(25);
-    
-    rect((width/4),(height/4),(width/4),(height/4));
-    text("AMBIENT RECORDS", 100,100)
-    
+    imageMode(CORNERS);
+    image(introimg, 0, 0, width, height);
+    text("AMBIENT RECORDS", mouseX, mouseY)
+
 
 }
 
-    function mousePressed() {
+function mouseClicked() {
+    if (((mouseX < width) && (mouseX > 0)) && ((mouseY > 0) && (mouseY < height))) {
         window.location.href = "artistpage.html";
     }
-    
+}
+
+
+function windowResized() {
+
+    resizeCanvas(windowWidth, windowHeight);
+}

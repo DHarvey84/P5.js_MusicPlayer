@@ -41,9 +41,9 @@ function artistButton(artistImg, artistBG, albumCover) {
         //this section draws the button, making certain changes depending on the button objects current state
         this.drawButton = function () {
 
-            //if the mouse is ober the button then increase the weight of the stroke
+            //if the mouse is over the button then increase the weight of the stroke
             if (isMouseOver(this)) {
-                stroke('red');
+                stroke('green');
                 strokeWeight(15);
             } else {
                 //if not then use a lighter stroke
@@ -55,9 +55,7 @@ function artistButton(artistImg, artistBG, albumCover) {
             if (this.isSelected) {
                 stroke("Red");
             }
-        else {
-            noStroke();
-        }
+
             rect(this.positionX, this.positionY, this.Width, this.Height);
 
             //This section fills the button with the loaded image
@@ -113,10 +111,6 @@ function standardButton(img, ButtonFunction) {
                 //if not then use a lighter stroke (unless is is selected in which case it will be a different colour)
                 stroke('black');
                 strokeWeight(5);
-                if (this.isSelected) {
-                    stroke('green'); //NOT WORKING!!!!!!!!! WHY NOT!!!
-                }
-
             };
 
             //draw the button boundary:
@@ -159,19 +153,6 @@ function trackButton(track, trackImg) {
                 this.positionY = positionY,
                 this.Height = Height,
                 this.Width = Width
-        },
-        //This section checks if the artist button has been clicked on and sets the returns true or false
-        this.clicked = function () {
-            //check if the Left mouse button was pressed over the button
-
-            if ((mouseButton == LEFT) && isMouseOver(this)) {
-
-                return true;
-
-            } else {
-                return false;
-
-            }
         },
         //This section checks if the artist button has been clicked on and sets the returns true or false
         this.clicked = function () {
