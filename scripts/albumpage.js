@@ -148,7 +148,7 @@
 
 //put visuals button at bottom of the pane
 
-                visualiser1.position(width/2, height/2, width / 4, height / 9);
+                visualiser1.position(10, (height/9) * 6, width / 4, height / 9);
 
     }
 
@@ -199,7 +199,7 @@
         //draw a one time instruction to tell user that they can draw particles on the screen (it will fade)
         textSize(42);
         fill("Red");
-        text("Use mouse to draw!!", height / 2, width / 2);
+        text("Use mouse to draw!!", width / 2, height / 2);
 
         //set a flag to tell draw function that visualiser 1 is initialised and running
         visualiser1running = true;
