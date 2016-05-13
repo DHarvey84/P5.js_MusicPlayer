@@ -1,21 +1,34 @@
 var artistButtons = [];
-var artArray1 = [];
-var artArray2 = [];
-var artArray3 = [];
+var artArray1 = []; //this is the array for the button images
+var artArray2 = []; //this is the array for the background images
+var artArray3 = []; //this is the array for the album covers
+var artArray4 = []; //this is the array for the blurbs
 var numberOfArtists = 3; //set this depending on number of artists and artist content is present in folders
 var playArtist;
 var playArtistImg;
-var artistBlurb;
 
 
 function preload() {
 
-    //create an array for each artist that contains their respective artist artwork
+    //create an array for each artist that contains their respective artist artwork and blurbs
     for (i = 0; i < numberOfArtists; i++) {
         //load each image file, they must be named and in the correct numbered location as below:
         artArray1[i] = loadImage("artists/artist" + i + "/artistbutton.jpg");
         artArray2[i] = loadImage("artists/artist" + i + "/artistbackground.jpg");
         artArray3[i] = loadImage("artists/artist" + i + "/albumcover.jpg");
+
+        //this section sets the artist blurb for each artist (future version will import from text files)
+        if (i == 0) {
+            artArray4[i] = 'This is Bensound! real name Benjamin TISSOT, ben is a Composer and Musician based in France who has been writing music for more than 10 years. his work was featured in projects from animations, corporate videos, commercials to short films and documentaries.';
+        }
+        if (i == 1) {
+            artArray4[i] = "This is the planck epoch! The Planck Epoch is an artifically intelligent entity born in the depths of the large hadron collider in Swizerland. Instead of destroying the earth, its hobby is creating music!.";
+        }
+
+        if (i == 2) {
+            artArray4[i] = "This is nine inch nails (http://www.nin.com/). Nine inch nails is an American industrial rock band. founded in 1988, by Trent Reznor in Cleveland Ohio.";
+        }
+
     }
 
     playArtistImg = loadImage("images/playartist.png");
@@ -27,7 +40,7 @@ function setup() {
 
     //create an array of artistButtons objects and load in the album artwork
     for (i = 0; i < numberOfArtists; i++) {
-        artistButtons[i] = new artistButton(artArray1[i], artArray2[i], artArray3[i]);
+        artistButtons[i] = new artistButton(artArray1[i], artArray2[i], artArray3[i], artArray4[i]);
     }
 
     //by default set the first artist button as being the currently selected one
@@ -37,6 +50,8 @@ function setup() {
     playArtist = new standardButton(playArtistImg, goToPlaybackPage);
 
     dynamicPositioning();
+
+
 
 
 }
@@ -60,6 +75,14 @@ function draw() {
             rect((width / 2) + 10, (height / 8), (width / 2.5), (width / 2.5));
             //draw the album cover
             image(artistButtons[i].albumCover, (width / 2) + 10, (height / 8), (width / 2.5), (width / 2.5));
+            
+            //draw the blurb
+            textSize(18);
+            fill(0, 102, 153);
+            textAlign(LEFT);
+            textStyle(NORMAL);
+            text(artistButtons[i].artistBlurb, width/12, (height/8), (width /2.5),(width/2.5));
+            
         }
     }
 

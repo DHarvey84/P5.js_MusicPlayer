@@ -11,10 +11,11 @@ The artist Button object will contain:
 
 
 //define the artistbutton object
-function artistButton(artistImg, artistBG, albumCover) {
+function artistButton(artistImg, artistBG, albumCover, blurb) {
     this.artistImg = artistImg,
         this.artistBG = artistBG,
         this.albumCover = albumCover,
+        this.artistBlurb = blurb,
 
         // this function when called refreshes the buttons position values
         this.position = function (positionX, positionY, Width, Height) {

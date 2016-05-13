@@ -119,6 +119,20 @@
         fill(255);
         noStroke();
         text("Select Track!", 10, 30, width / 4, height / 9);
+        
+        //add in credit to artists
+            textSize(18);
+            textAlign(LEFT);
+            noStroke();
+        if (artist == 0){            
+            text("www.bensound.com", 10, height - 20)
+        }
+            if (artist == 1){            
+            text("credit:Darren Harvey", 10, height - 20)
+        }
+            if (artist == 2){            
+            text("credit:http://www.nin.com/", 10, height - 20)
+        }
 
 
         //draw the visualiser button by calling its function
